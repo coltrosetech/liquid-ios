@@ -1,9 +1,9 @@
 # `ios-design` Plugin — Design Specification
 
 **Date:** 2026-04-20
-**Status:** Approved (brainstorming complete, awaiting implementation plan)
+**Status:** Implemented (v0.1.1 released and validated end-to-end)
 **Owner:** f.d.developer
-**Target version:** v0.1.0
+**Target version:** v0.1.0 (initial), v0.1.1 (real-world fix — see §14)
 
 ---
 
@@ -396,6 +396,41 @@ These are deliberate deferrals — design intent is set, but implementation deta
 3. State flag storage location (`.claude/state/` is convention; verify it doesn't conflict with user's git ignores)
 4. CI/test approach for skill behavior (Claude Code skill testing is still maturing as of 2026-04)
 5. License for shipped prototype shell template (MIT vs Apache-2 — pick during repo init)
+
+## 14. Post-v0.1.0 Changes (v0.1.1)
+
+Real-world end-to-end testing surfaced one bug that warranted an immediate patch.
+
+### 14.1 Playwright `file://` blocking — fix
+
+**Symptom:** Playwright MCP rejects `file://` URLs for security. The init/feature skills' "open prototypes via `browser_navigate file://...`" step failed.
+
+**Root cause:** Browser-automation MCPs broadly block `file://` to prevent local-file exfiltration. This is by design and not configurable.
+
+**Fix:** Added two helper scripts in a new `scripts/` directory:
+- `scripts/serve-prototypes.sh` — starts a local HTTP server (Python `http.server`) on `127.0.0.1`. Default port 8765, auto-bumps on collision (scans up to 19 ports). Idempotent: detects an existing server for the project and reuses it. Writes PID to `.design/.prototype-server.pid`. Prints the base URL on stdout for the caller to capture.
+- `scripts/stop-prototype-server.sh` — kills the recorded PID, idempotent.
+
+The `init` and `feature` SKILL.md files were updated to invoke these scripts when playwright is detected, and to fall back to `file://` paths when playwright is absent (manual user opening).
+
+The `references/companion-plugins.md` playwright entry was annotated with the limitation and the workaround.
+
+### 14.2 Validation
+
+The fix was validated by running the full init-then-feature flow against a live `todo-app` test project:
+- Server started on `http://localhost:8765`
+- All three DNA prototypes opened in playwright successfully
+- Screenshots captured for each
+- Click interaction tested on a task row → toggle animation fired → state persisted in DOM
+- Server stopped cleanly via the stop script
+
+### 14.3 Affected version
+
+Released as `v0.1.1` (annotated git tag). plugin.json bumped from `0.1.0` to `0.1.1`. No SKILL.md frontmatter changes; no breaking changes for users of `v0.1.0`.
+
+### 14.4 Spec implication
+
+The original §13 "Open Implementation Questions" item #2 ("Whether to ship pre-rendered baseline prototype HTML for each default DNA, or generate fresh per-init") was decided during implementation in favor of pre-rendered baselines (Task 7). This v0.1.1 fix reinforces that decision: with prototypes as static files, a simple HTTP server suffices; if prototypes were generated per-init we would have needed more complex server-management lifecycle.
 
 ---
 

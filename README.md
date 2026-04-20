@@ -67,10 +67,16 @@ Custom DNAs derived from a base by parameter tweak.
 - v0.5 — `ios-design:appstore` (submission flow)
 - v1.0 — `ios-design:backend-integration`
 
+## Versions
+
+- **Current:** v0.1.1 — see [`CHANGELOG.md`](CHANGELOG.md)
+- v0.1.1 fixes a real-world playwright `file://` blocking issue surfaced during end-to-end testing; ships local HTTP server scripts.
+
 ## Source
 
-- Design spec: `docs/superpowers/specs/2026-04-20-ios-design-plugin-design.md`
-- Implementation plan: `docs/superpowers/plans/2026-04-20-ios-design-plugin.md`
+- Changelog: [`CHANGELOG.md`](CHANGELOG.md)
+- Design spec: [`docs/superpowers/specs/2026-04-20-ios-design-plugin-design.md`](docs/superpowers/specs/2026-04-20-ios-design-plugin-design.md) (includes §14 covering v0.1.1 changes)
+- Implementation plan: [`docs/superpowers/plans/2026-04-20-ios-design-plugin.md`](docs/superpowers/plans/2026-04-20-ios-design-plugin.md)
 
 ## License
 
