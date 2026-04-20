@@ -218,17 +218,40 @@ Her klasörde `.design/` (kilitli DNA + HTML prototipler) commit'li — plugin'i
 
 ## 🚀 Hızlı başlangıç
 
+### En hızlı yol — Claude Code marketplace üzerinden (önerilen)
+
+Claude Code içinde sırasıyla:
+
+```
+/plugin marketplace add coltrosetech/claude-plugins
+/plugin install liquid-ios@coltrosetech
+```
+
+İki komut. Claude Code marketplace'i fetch eder, plugin'i kurar, aktive eder. Restart gerekmez — hemen kullanabilirsin.
+
+### Alternatif — tek satırlık shell script
+
+Terminal'i tercih ediyorsan:
+
 ```bash
-# Clone
+curl -fsSL https://raw.githubusercontent.com/coltrosetech/liquid-ios/main/install.sh | bash
+```
+
+Script clone'lar, `~/.claude/plugins/local/liquid-ios` altına yerleştirir, idempotent (tekrar çalıştırırsan update olur). Sonrasında Claude Code'u yeniden başlat.
+
+### Manuel install (fork'luyorsan veya geliştirecek)
+
+```bash
 git clone https://github.com/coltrosetech/liquid-ios.git
 cd liquid-ios
-
-# Local symlink ile install (Claude Code ~/.claude/plugins/ içinde keşfeder)
 mkdir -p ~/.claude/plugins/local
 ln -snf "$(pwd)" ~/.claude/plugins/local/liquid-ios
-
 # Claude Code'u yeniden başlat (Cmd+Q, aç)
 ```
+
+Symlink, repo'daki edit'lerini canlı yansıtır — plugin üzerinde çalışanlar için.
+
+### Kurdun, şimdi ne?
 
 Boş bir dizinde yeni bir Claude Code session açıp:
 
