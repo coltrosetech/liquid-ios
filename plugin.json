@@ -1,0 +1,25 @@
+{
+  "name": "ios-design",
+  "version": "0.1.0",
+  "description": "Design-first iOS app development plugin. Motion-validated HTML prototypes → SwiftUI implementation. Composes with superpowers.",
+  "author": "f.d.developer",
+  "skills": [
+    "skills/ios-design",
+    "skills/ios-design-init",
+    "skills/ios-design-feature",
+    "skills/ios-design-tweak"
+  ],
+  "hooks": [
+    {
+      "event": "SessionStart",
+      "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh",
+      "description": "Reset per-skill capability-card flags for new session"
+    }
+  ],
+  "recommendedPlugins": [
+    { "name": "superpowers", "criticality": "essential" },
+    { "name": "context7", "criticality": "essential", "type": "mcp" },
+    { "name": "playwright", "criticality": "recommended", "type": "mcp" },
+    { "name": "serena", "criticality": "recommended", "type": "mcp" }
+  ]
+}
