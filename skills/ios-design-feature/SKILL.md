@@ -55,7 +55,15 @@ If clear: proceed.
 4. Every motion declaration MUST have a sibling `<!-- swiftui: ... -->` comment per `references/motion-fidelity-rules.md`
 5. Self-test: scan output against motion-fidelity-rules whitelist; revise if violations
 6. Write to `<project>/.design/prototypes/feature-<feature-name>.html`
-7. Open via playwright if available, otherwise print path
+7. Open via playwright if available:
+   - Start local HTTP server: `${CLAUDE_PLUGIN_ROOT}/scripts/serve-prototypes.sh` (it reuses an existing server if one is running for this project)
+   - Capture the printed base URL
+   - Navigate: `browser_navigate <baseUrl>/feature-<feature-name>.html`
+   - After approval (Step 5), the server can stay running for subsequent feature iterations or be stopped with `${CLAUDE_PLUGIN_ROOT}/scripts/stop-prototype-server.sh`
+   
+   If playwright NOT available: print the `file://` path and ask the user to open it manually.
+   
+   **Why server, not file://:** Playwright MCP blocks `file://` for security; HTTP server unblocks automation.
 
 ## Step 5: User approval gate
 

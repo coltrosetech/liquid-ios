@@ -81,8 +81,14 @@ For each of the 3 DNAs (`liquid-native`, `editorial-crisp`, `playful-character`)
 2. Inject app-idea-specific realistic content into the `{{CONTENT}}` placeholder (replace the generic sample copy with copy that reflects the user's actual app idea — e.g., for a journaling app, use journal entry snippets)
 3. Write the result to `<project>/.design/prototypes/<dna-id>.html`
 
-If `playwright` MCP available: open all three via `browser_navigate file://...` (one tab each).
-Otherwise: print three `file://` paths and ask the user to open them.
+If `playwright` MCP available:
+1. Run `${CLAUDE_PLUGIN_ROOT}/scripts/serve-prototypes.sh` from `<project>` root — it starts a local HTTP server (default port 8765, auto-bumps on collision) and prints the base URL on stdout. Capture this URL.
+2. Open each prototype via `browser_navigate <baseUrl>/<dna-id>.html` (one navigation per DNA — playwright supports tabs but sequential snapshots are simpler).
+3. After DNA selection (Step 6), stop the server with `${CLAUDE_PLUGIN_ROOT}/scripts/stop-prototype-server.sh`.
+
+**Why a local server:** Playwright MCP and most browser MCPs block `file://` for security. The HTTP server unblocks programmatic browser automation.
+
+If `playwright` MCP NOT available: print three `file://` paths and ask the user to open them in their browser manually. No server needed in this fallback.
 
 ## Step 6: DNA selection
 

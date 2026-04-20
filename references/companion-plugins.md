@@ -33,6 +33,7 @@ This plugin works standalone, but several complementary tools meaningfully ampli
 - Why: HTML prototypes auto-open in a browser tab, screenshots are captured for `DESIGN_DNA.md` archive, guided interaction (click/scroll prompts) supported.
 - Loss if missing: skill outputs `file://` paths and asks the user to open them manually; feedback is text-only.
 - Install: see playwright MCP docs.
+- **Note:** Playwright blocks `file://` URLs. The plugin includes `scripts/serve-prototypes.sh` to spin up a local HTTP server (Python `http.server`, default port 8765) that the init/feature skills automatically invoke when playwright is detected. Stop with `scripts/stop-prototype-server.sh`.
 
 **serena MCP**
 - Why: semantic Swift code navigation (`find_symbol`, `find_referencing_symbols`). For tweak/feature edits in larger projects, this avoids reading whole files.
