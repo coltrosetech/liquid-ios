@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prototype — Editorial Crisp</title>
+<style>
+:root {
+  /* Injected from design-system.json — placeholders below replaced at generation */
+  --color-primary: #0066FF;
+  --color-bg-light: #FFFFFF;
+  --color-bg-dark: #0A0A0A;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --motion-duration: 200ms;
+  --motion-easing: ease-in-out;
+  --font-primary: SF Pro;
+  --font-mono: SF Mono;
+  --radius-card: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root { --color-bg: var(--color-bg-dark); }
+}
+@media (prefers-color-scheme: light) {
+  :root { --color-bg: var(--color-bg-light); }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-primary), -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #2a2a2a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 0;
+}
+
+/* iPhone 16 Pro frame: 393x852 logical points */
+.device {
+  width: 393px;
+  height: 852px;
+  background: var(--color-bg);
+  border-radius: 55px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+
+.device::before {
+  /* Dynamic Island */
+  content: "";
+  position: absolute;
+  top: 11px; left: 50%;
+  /* swiftui: layout-only, not an animated transform */
+  transform: translateX(-50%);
+  width: 126px; height: 37px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 100;
+}
+
+.status-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 54px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 24px 8px;
+  font-size: 17px;
+  font-weight: 600;
+  z-index: 50;
+}
+
+.home-indicator {
+  position: absolute;
+  bottom: 8px; left: 50%;
+  /* swiftui: layout-only, not an animated transform */
+  transform: translateX(-50%);
+  width: 134px; height: 5px;
+  background: currentColor;
+  border-radius: 3px;
+  opacity: 0.6;
+  z-index: 50;
+}
+
+.safe-area {
+  position: absolute;
+  top: 59px; left: 0; right: 0; bottom: 34px;
+  overflow-y: auto;
+}
+
+/* Components — DNA-specific styling appended at generation */
+li.selected { background: rgba(0, 102, 255, 0.08); }
+</style>
+</head>
+<body>
+<div class="device">
+  <div class="status-bar"><span>9:41</span><span>·· 􀙇 􀛨</span></div>
+  <div class="safe-area">
+    <!-- DNA-specific markup appended here at generation -->
+    <div class="screen">
+      <h1 style="padding: var(--space-4) var(--space-3) var(--space-2); font-size: 28px; font-weight: 600; letter-spacing: -0.02em;">Inbox</h1>
+
+      <!-- swiftui: List with hairline separators, .easeInOut(duration: 0.2) on selection -->
+      <ul style="list-style: none; padding: 0;">
+
+        <!-- swiftui: row with .background(isSelected ? Color.accent.opacity(0.1) : .clear).animation(.easeInOut(duration: 0.2), value: isSelected) -->
+        <li onclick="toggle(this)" style="
+          padding: var(--space-3);
+          border-bottom: 1px solid rgba(0,0,0,0.06);
+          transition: background var(--motion-duration) var(--motion-easing);
+          cursor: pointer;
+          display: flex;
+          gap: var(--space-2);
+          align-items: center;
+        ">
+          <span style="font-family: var(--font-mono); font-size: 12px; opacity: 0.5; min-width: 50px;">10:42</span>
+          <div>
+            <h4 style="font-size: 15px; font-weight: 500;">Q3 metrics review</h4>
+            <p style="font-size: 13px; opacity: 0.6;">Numbers from the dashboard, plus the two anomalies from week 34.</p>
+          </div>
+        </li>
+
+        <!-- swiftui: row with .background(isSelected ? Color.accent.opacity(0.1) : .clear).animation(.easeInOut(duration: 0.2), value: isSelected) -->
+        <li onclick="toggle(this)" style="
+          padding: var(--space-3);
+          border-bottom: 1px solid rgba(0,0,0,0.06);
+          transition: background var(--motion-duration) var(--motion-easing);
+          cursor: pointer;
+          display: flex;
+          gap: var(--space-2);
+          align-items: center;
+        ">
+          <span style="font-family: var(--font-mono); font-size: 12px; opacity: 0.5; min-width: 50px;">09:58</span>
+          <div>
+            <h4 style="font-size: 15px; font-weight: 500;">ENG-4821 deploy blocker</h4>
+            <p style="font-size: 13px; opacity: 0.6;">Rolled back — patch landing behind flag, reopening once green.</p>
+          </div>
+        </li>
+
+        <!-- swiftui: row with .background(isSelected ? Color.accent.opacity(0.1) : .clear).animation(.easeInOut(duration: 0.2), value: isSelected) -->
+        <li onclick="toggle(this)" style="
+          padding: var(--space-3);
+          border-bottom: 1px solid rgba(0,0,0,0.06);
+          transition: background var(--motion-duration) var(--motion-easing);
+          cursor: pointer;
+          display: flex;
+          gap: var(--space-2);
+          align-items: center;
+        ">
+          <span style="font-family: var(--font-mono); font-size: 12px; opacity: 0.5; min-width: 50px;">Yda</span>
+          <div>
+            <h4 style="font-size: 15px; font-weight: 500;">Design review notes</h4>
+            <p style="font-size: 13px; opacity: 0.6;">Two items marked for revisit — accent contrast and list density at L.</p>
+          </div>
+        </li>
+
+        <!-- swiftui: row with .background(isSelected ? Color.accent.opacity(0.1) : .clear).animation(.easeInOut(duration: 0.2), value: isSelected) -->
+        <li onclick="toggle(this)" style="
+          padding: var(--space-3);
+          border-bottom: 1px solid rgba(0,0,0,0.06);
+          transition: background var(--motion-duration) var(--motion-easing);
+          cursor: pointer;
+          display: flex;
+          gap: var(--space-2);
+          align-items: center;
+        ">
+          <span style="font-family: var(--font-mono); font-size: 12px; opacity: 0.5; min-width: 50px;">Mon</span>
+          <div>
+            <h4 style="font-size: 15px; font-weight: 500;">Weekly planning (P0)</h4>
+            <p style="font-size: 13px; opacity: 0.6;">Nine items in triage, four ready for scope — see pinned thread.</p>
+          </div>
+        </li>
+
+        <!-- swiftui: row with .background(isSelected ? Color.accent.opacity(0.1) : .clear).animation(.easeInOut(duration: 0.2), value: isSelected) -->
+        <li onclick="toggle(this)" style="
+          padding: var(--space-3);
+          border-bottom: 1px solid rgba(0,0,0,0.06);
+          transition: background var(--motion-duration) var(--motion-easing);
+          cursor: pointer;
+          display: flex;
+          gap: var(--space-2);
+          align-items: center;
+        ">
+          <span style="font-family: var(--font-mono); font-size: 12px; opacity: 0.5; min-width: 50px;">Sun</span>
+          <div>
+            <h4 style="font-size: 15px; font-weight: 500;">Draft: platform principles</h4>
+            <p style="font-size: 13px; opacity: 0.6;">Third pass on the intro — tightening the four tenets, dropping section 2.</p>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+  <div class="home-indicator"></div>
+</div>
+<script>
+// Reserved for TimelineView-equivalent requestAnimationFrame loops if needed.
+function toggle(el) { el.classList.toggle('selected'); }
+</script>
+</body>
+</html>

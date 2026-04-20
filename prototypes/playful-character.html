@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prototype — Playful Character</title>
+<style>
+:root {
+  /* Injected from design-system.json — placeholders below replaced at generation */
+  --color-primary: #FF5E5B;
+  --color-bg-light: #FFFEF7;
+  --color-bg-dark: #1B1A1F;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --motion-duration: 400ms;
+  --motion-easing: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  --font-primary: SF Pro Rounded;
+  --font-mono: SF Mono;
+  --radius-card: 24px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root { --color-bg: var(--color-bg-dark); }
+}
+@media (prefers-color-scheme: light) {
+  :root { --color-bg: var(--color-bg-light); }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-primary), -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #2a2a2a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 0;
+}
+
+/* iPhone 16 Pro frame: 393x852 logical points */
+.device {
+  width: 393px;
+  height: 852px;
+  background: var(--color-bg);
+  border-radius: 55px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+
+.device::before {
+  /* Dynamic Island */
+  content: "";
+  position: absolute;
+  top: 11px; left: 50%;
+  /* swiftui: layout-only, not an animated transform */
+  transform: translateX(-50%);
+  width: 126px; height: 37px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 100;
+}
+
+.status-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 54px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 24px 8px;
+  font-size: 17px;
+  font-weight: 600;
+  z-index: 50;
+}
+
+.home-indicator {
+  position: absolute;
+  bottom: 8px; left: 50%;
+  /* swiftui: layout-only, not an animated transform */
+  transform: translateX(-50%);
+  width: 134px; height: 5px;
+  background: currentColor;
+  border-radius: 3px;
+  opacity: 0.6;
+  z-index: 50;
+}
+
+.safe-area {
+  position: absolute;
+  top: 59px; left: 0; right: 0; bottom: 34px;
+  overflow-y: auto;
+}
+
+/* Components — DNA-specific styling appended at generation */
+
+/* swiftui: phaseAnimator idle float, phases: [0, -8px, 0] */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+/* swiftui: .symbolEffect(.bounce.up.byLayer) approximation */
+@keyframes pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+/* swiftui: .symbolEffect(.bounce) triggered by celebrate() */
+.popping { animation: pop 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28); }
+/* swiftui: .scaleEffect on press via .buttonStyle */
+button:active { transform: scale(0.95); }
+</style>
+</head>
+<body>
+<div class="device">
+  <div class="status-bar"><span>9:41</span><span>·· 􀙇 􀛨</span></div>
+  <div class="safe-area">
+    <!-- DNA-specific markup appended here at generation -->
+    <div class="screen">
+      <!-- swiftui: VStack with .symbolEffect(.bounce) on celebration trigger -->
+      <div style="display: flex; flex-direction: column; align-items: center; padding: var(--space-4) var(--space-3); gap: var(--space-3);">
+
+        <!-- swiftui: Image(systemName: "flame.fill").symbolEffect(.bounce.up.byLayer, value: count).foregroundStyle(.orange) -->
+        <div onclick="celebrate(this)" style="
+          width: 120px; height: 120px;
+          border-radius: 60px;
+          background: linear-gradient(135deg, #FFE74C, #FF5E5B);
+          display: flex; align-items: center; justify-content: center;
+          font-size: 64px;
+          cursor: pointer;
+          animation: float 3s ease-in-out infinite;
+          transition: transform var(--motion-duration) var(--motion-easing);
+        ">🔥</div>
+
+        <!-- swiftui: Text("7 day streak!").font(.title.bold()) with phaseAnimator for entrance -->
+        <h1 style="font-size: 32px; font-weight: 700; font-family: var(--font-primary);">7 day streak!</h1>
+        <p style="font-size: 17px; opacity: 0.7;">Keep the flame alive 💪</p>
+
+        <!-- swiftui: Button with .buttonStyle(.borderedProminent) sized large, with custom spring on press -->
+        <button style="
+          margin-top: var(--space-4);
+          padding: var(--space-3) var(--space-4);
+          background: var(--color-primary);
+          color: white;
+          font-size: 17px; font-weight: 600;
+          border: none;
+          border-radius: 30px;
+          cursor: pointer;
+          transition: transform var(--motion-duration) var(--motion-easing);
+        ">Continue today's lesson</button>
+      </div>
+    </div>
+  </div>
+  <div class="home-indicator"></div>
+</div>
+<script>
+// Reserved for TimelineView-equivalent requestAnimationFrame loops if needed.
+function celebrate(el) {
+  el.classList.remove('popping');
+  void el.offsetWidth; // restart animation
+  el.classList.add('popping');
+}
+</script>
+</body>
+</html>
