@@ -1,0 +1,55 @@
+{
+  "$schema": "./design-system.schema.json",
+  "dna_id": "<DNA_ID>",
+  "version": "1.0.0",
+  "ios_min": 26,
+  "color": {
+    "primary": "<COLOR_TOKEN_OR_HEX>",
+    "background": {
+      "light": "<COLOR>",
+      "dark": "<COLOR>"
+    },
+    "semantic": "<system | custom>",
+    "accents": []
+  },
+  "typography": {
+    "scale": "<RATIO_AS_STRING>",
+    "families": {
+      "primary": "<FONT_FAMILY>",
+      "mono": "<FONT_FAMILY>"
+    }
+  },
+  "spacing": {
+    "rhythm": [4, 8, 12, 16, 24, 32, 48, 64]
+  },
+  "motion": {
+    "primary_spring": { "response": 0.0, "damping": 0.0 },
+    "primary_easing": null,
+    "transition_duration_ms": 0,
+    "easing": "<spring | easeInOut | linear>",
+    "swiftui_primitives": []
+  },
+  "components": {
+    "card": {
+      "corner_radius": 0,
+      "shadow": "<none | soft | playful>",
+      "blur_intensity": "<none | regular | thick>"
+    },
+    "navbar": {
+      "material": "<glassEffect | regularMaterial | ultraThinMaterial>",
+      "fallback_material": "<MATERIAL>"
+    }
+  },
+  "stack_decisions": {
+    "min_ios": 26,
+    "bootstrap": "<vanilla-xcode | tuist | xcodegen>",
+    "test_framework": "<swift-testing | xctest>",
+    "concurrency": "swift6-strict",
+    "state": "observable-mainactor",
+    "persistence": "<swiftdata | core-data>",
+    "architecture": "<mvvm-observable | tca | clean>",
+    "di": "<manual-constructor | swift-dependencies>",
+    "navigation": "navigation-stack-path-binding"
+  },
+  "overrides": []
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prototype — {{DNA_NAME}}</title>
+<style>
+:root {
+  /* Injected from design-system.json — placeholders below replaced at generation */
+  --color-primary: {{COLOR_PRIMARY}};
+  --color-bg-light: {{COLOR_BG_LIGHT}};
+  --color-bg-dark: {{COLOR_BG_DARK}};
+  --space-1: {{SPACE_1}}px;
+  --space-2: {{SPACE_2}}px;
+  --space-3: {{SPACE_3}}px;
+  --space-4: {{SPACE_4}}px;
+  --motion-duration: {{MOTION_DURATION_MS}}ms;
+  --motion-easing: {{MOTION_EASING_BEZIER}};
+  --font-primary: {{FONT_PRIMARY}};
+  --font-mono: {{FONT_MONO}};
+  --radius-card: {{CARD_RADIUS}}px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root { --color-bg: var(--color-bg-dark); }
+}
+@media (prefers-color-scheme: light) {
+  :root { --color-bg: var(--color-bg-light); }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-primary), -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #2a2a2a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 0;
+}
+
+/* iPhone 16 Pro frame: 393x852 logical points */
+.device {
+  width: 393px;
+  height: 852px;
+  background: var(--color-bg);
+  border-radius: 55px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+
+.device::before {
+  /* Dynamic Island */
+  content: "";
+  position: absolute;
+  top: 11px; left: 50%;
+  transform: translateX(-50%);
+  width: 126px; height: 37px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 100;
+}
+
+.status-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 54px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 24px 8px;
+  font-size: 17px;
+  font-weight: 600;
+  z-index: 50;
+}
+
+.home-indicator {
+  position: absolute;
+  bottom: 8px; left: 50%;
+  transform: translateX(-50%);
+  width: 134px; height: 5px;
+  background: currentColor;
+  border-radius: 3px;
+  opacity: 0.6;
+  z-index: 50;
+}
+
+.safe-area {
+  position: absolute;
+  top: 59px; left: 0; right: 0; bottom: 34px;
+  overflow-y: auto;
+}
+
+/* Components — DNA-specific styling appended at generation */
+</style>
+</head>
+<body>
+<div class="device">
+  <div class="status-bar"><span>9:41</span><span>·· 􀙇 􀛨</span></div>
+  <div class="safe-area">
+    <!-- DNA-specific markup appended here at generation -->
+    {{CONTENT}}
+  </div>
+  <div class="home-indicator"></div>
+</div>
+<script>
+// Reserved for TimelineView-equivalent requestAnimationFrame loops if needed.
+// {{SCRIPT}}
+</script>
+</body>
+</html>
