@@ -27,7 +27,7 @@ This plugin works standalone, but several complementary tools meaningfully ampli
 - Loss if missing: skill falls back to WebSearch and prepends a staleness warning to its answers.
 - Install: see context7 plugin docs.
 
-### Highly recommended
+### Recommended
 
 **playwright MCP**
 - Why: HTML prototypes auto-open in a browser tab, screenshots are captured for `DESIGN_DNA.md` archive, guided interaction (click/scroll prompts) supported.

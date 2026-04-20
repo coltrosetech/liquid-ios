@@ -32,9 +32,12 @@
 | Min iOS | <version> | <why> |
 | Bootstrap | <tool> | <why> |
 | Test framework | <framework> | <why> |
+| Concurrency | <swift6-strict> | <why> |
+| State | <observable-mainactor> | <why> |
 | Architecture | <pattern> | <why> |
 | Persistence | <choice> | <why> |
 | DI | <approach> | <why> |
+| Navigation | <navigation-stack-path-binding> | <why> |
 
 ## Override'lar
 
