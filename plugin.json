@@ -2,7 +2,7 @@
   "name": "ios-design",
   "version": "0.1.1",
   "description": "Design-first iOS app development plugin. Motion-validated HTML prototypes → SwiftUI implementation. Composes with superpowers.",
-  "author": "f.d.developer",
+  "author": "Yusuf Gül <yusuf.gul@collbrai.com>",
   "skills": [
     "skills/ios-design",
     "skills/ios-design-init",

@@ -4,7 +4,7 @@
 
 **Goal:** Build the v0.1.0 release of the `ios-design` Claude Code plugin — a 4-skill family (router + init + feature + tweak) that produces motion-validated HTML design prototypes before SwiftUI implementation, with persistent design DNA, superpowers composition, self-introducing capability cards, and companion-plugin awareness.
 
-**Architecture:** Plugin lives at the project root (`/Users/f.d.developer/personal/skill-dev/`). Skills are markdown-only with YAML frontmatter; references hold curated knowledge for progressive disclosure; templates and prototypes ship as static assets; one bash hook resets per-session state flags. No runtime code execution other than the SessionStart hook.
+**Architecture:** Plugin lives at the project root (`<plugin-root>/`). Skills are markdown-only with YAML frontmatter; references hold curated knowledge for progressive disclosure; templates and prototypes ship as static assets; one bash hook resets per-session state flags. No runtime code execution other than the SessionStart hook.
 
 **Tech Stack:** Markdown (skills, references, README), JSON (plugin manifest, design tokens), HTML/CSS (prototype templates), Bash (one hook), Git (versioning, commits).
 
@@ -15,29 +15,29 @@
 ## Task 1: Plugin Scaffold
 
 **Files:**
-- Create: `/Users/f.d.developer/personal/skill-dev/plugin.json`
-- Create: `/Users/f.d.developer/personal/skill-dev/.gitignore`
-- Create: `/Users/f.d.developer/personal/skill-dev/README.md` (skeleton — finalized in Task 14)
+- Create: `<plugin-root>/plugin.json`
+- Create: `<plugin-root>/.gitignore`
+- Create: `<plugin-root>/README.md` (skeleton — finalized in Task 14)
 - Modify: initialize git repo at project root
 
 - [ ] **Step 1: Initialize git and create directory skeleton**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 git init
 mkdir -p references templates prototypes hooks skills/ios-design skills/ios-design-init skills/ios-design-feature skills/ios-design-tweak tests
 ```
 
 - [ ] **Step 2: Create `plugin.json`**
 
-Write `/Users/f.d.developer/personal/skill-dev/plugin.json`:
+Write `<plugin-root>/plugin.json`:
 
 ```json
 {
   "name": "ios-design",
   "version": "0.1.0",
   "description": "Design-first iOS app development plugin. Motion-validated HTML prototypes → SwiftUI implementation. Composes with superpowers.",
-  "author": "f.d.developer",
+  "author": "<author>",
   "skills": [
     "skills/ios-design",
     "skills/ios-design-init",
@@ -62,7 +62,7 @@ Write `/Users/f.d.developer/personal/skill-dev/plugin.json`:
 
 - [ ] **Step 3: Create `.gitignore`**
 
-Write `/Users/f.d.developer/personal/skill-dev/.gitignore`:
+Write `<plugin-root>/.gitignore`:
 
 ```
 .DS_Store
@@ -75,7 +75,7 @@ node_modules/
 
 - [ ] **Step 4: Create README skeleton**
 
-Write `/Users/f.d.developer/personal/skill-dev/README.md`:
+Write `<plugin-root>/README.md`:
 
 ```markdown
 # ios-design
@@ -96,13 +96,13 @@ Design-first iOS app development plugin for Claude Code.
 
 - [ ] **Step 5: Validate JSON**
 
-Run: `python3 -c "import json; json.load(open('/Users/f.d.developer/personal/skill-dev/plugin.json'))"`
+Run: `python3 -c "import json; json.load(open('<plugin-root>/plugin.json'))"`
 Expected: no output (success). Failure prints `JSONDecodeError`.
 
 - [ ] **Step 6: Commit**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 git add plugin.json .gitignore README.md
 git commit -m "chore: scaffold ios-design plugin v0.1.0 manifest and structure"
 ```
@@ -112,7 +112,7 @@ git commit -m "chore: scaffold ios-design plugin v0.1.0 manifest and structure"
 ## Task 2: Companion Plugins Reference
 
 **Files:**
-- Create: `/Users/f.d.developer/personal/skill-dev/references/companion-plugins.md`
+- Create: `<plugin-root>/references/companion-plugins.md`
 
 - [ ] **Step 1: Write companion-plugins.md**
 
@@ -181,7 +181,7 @@ The capability card never blocks. Detection happens once per session; subsequent
 - [ ] **Step 2: Commit**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 git add references/companion-plugins.md
 git commit -m "feat(refs): add companion plugins detection catalog"
 ```
@@ -191,7 +191,7 @@ git commit -m "feat(refs): add companion plugins detection catalog"
 ## Task 3: Motion Fidelity Rules Reference
 
 **Files:**
-- Create: `/Users/f.d.developer/personal/skill-dev/references/motion-fidelity-rules.md`
+- Create: `<plugin-root>/references/motion-fidelity-rules.md`
 
 - [ ] **Step 1: Write motion-fidelity-rules.md**
 
@@ -273,7 +273,7 @@ When in doubt, generate the bezier dynamically and document the source spring pa
 - [ ] **Step 2: Commit**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 git add references/motion-fidelity-rules.md
 git commit -m "feat(refs): add motion fidelity rules with CSS<>SwiftUI whitelist"
 ```
@@ -283,7 +283,7 @@ git commit -m "feat(refs): add motion fidelity rules with CSS<>SwiftUI whitelist
 ## Task 4: DNA Prototypes Catalog Reference
 
 **Files:**
-- Create: `/Users/f.d.developer/personal/skill-dev/references/dna-prototypes.md`
+- Create: `<plugin-root>/references/dna-prototypes.md`
 
 - [ ] **Step 1: Write dna-prototypes.md**
 
@@ -408,7 +408,7 @@ These are the values that get written into `design-system.json` when the DNA is 
 - [ ] **Step 2: Commit**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 git add references/dna-prototypes.md
 git commit -m "feat(refs): add 3 default DNA catalog with token defaults"
 ```
@@ -418,7 +418,7 @@ git commit -m "feat(refs): add 3 default DNA catalog with token defaults"
 ## Task 5: Superpowers Composition Reference
 
 **Files:**
-- Create: `/Users/f.d.developer/personal/skill-dev/references/superpowers-composition.md`
+- Create: `<plugin-root>/references/superpowers-composition.md`
 
 - [ ] **Step 1: Write superpowers-composition.md**
 
@@ -492,7 +492,7 @@ After prototype approval:
 - [ ] **Step 2: Commit**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 git add references/superpowers-composition.md
 git commit -m "feat(refs): add superpowers composition map with per-skill gateways"
 ```
@@ -502,9 +502,9 @@ git commit -m "feat(refs): add superpowers composition map with per-skill gatewa
 ## Task 6: Templates
 
 **Files:**
-- Create: `/Users/f.d.developer/personal/skill-dev/templates/design-system.template.json`
-- Create: `/Users/f.d.developer/personal/skill-dev/templates/DESIGN_DNA.template.md`
-- Create: `/Users/f.d.developer/personal/skill-dev/templates/prototype-shell.html`
+- Create: `<plugin-root>/templates/design-system.template.json`
+- Create: `<plugin-root>/templates/DESIGN_DNA.template.md`
+- Create: `<plugin-root>/templates/prototype-shell.html`
 
 - [ ] **Step 1: Write design-system.template.json**
 
@@ -740,13 +740,13 @@ body {
 
 - [ ] **Step 4: Validate JSON template**
 
-Run: `python3 -c "import json; json.load(open('/Users/f.d.developer/personal/skill-dev/templates/design-system.template.json'))"`
+Run: `python3 -c "import json; json.load(open('<plugin-root>/templates/design-system.template.json'))"`
 Expected: no output (success).
 
 - [ ] **Step 5: Commit**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 git add templates/
 git commit -m "feat(templates): add design-system, DESIGN_DNA, and prototype shell"
 ```
@@ -758,9 +758,9 @@ git commit -m "feat(templates): add design-system, DESIGN_DNA, and prototype she
 Each prototype shows a representative screen pattern (home + a transition + a detail) so the user can feel the DNA's motion character. All three follow the same structural shell from Task 6 but inject DNA-specific tokens and components.
 
 **Files:**
-- Create: `/Users/f.d.developer/personal/skill-dev/prototypes/liquid-native.html`
-- Create: `/Users/f.d.developer/personal/skill-dev/prototypes/editorial-crisp.html`
-- Create: `/Users/f.d.developer/personal/skill-dev/prototypes/playful-character.html`
+- Create: `<plugin-root>/prototypes/liquid-native.html`
+- Create: `<plugin-root>/prototypes/editorial-crisp.html`
+- Create: `<plugin-root>/prototypes/playful-character.html`
 
 - [ ] **Step 1: Build liquid-native.html**
 
@@ -934,7 +934,7 @@ If not: print the file:// path and ask the implementer to open manually and conf
 - [ ] **Step 6: Commit**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 git add prototypes/
 git commit -m "feat(prototypes): add 3 default DNA interactive prototypes"
 ```
@@ -944,7 +944,7 @@ git commit -m "feat(prototypes): add 3 default DNA interactive prototypes"
 ## Task 8: SessionStart Hook
 
 **Files:**
-- Create: `/Users/f.d.developer/personal/skill-dev/hooks/session-start.sh`
+- Create: `<plugin-root>/hooks/session-start.sh`
 
 - [ ] **Step 1: Write session-start.sh**
 
@@ -967,12 +967,12 @@ exit 0
 
 - [ ] **Step 2: Make executable**
 
-Run: `chmod +x /Users/f.d.developer/personal/skill-dev/hooks/session-start.sh`
+Run: `chmod +x <plugin-root>/hooks/session-start.sh`
 Expected: no output.
 
 - [ ] **Step 3: Lint with shellcheck (if installed)**
 
-Run: `command -v shellcheck >/dev/null && shellcheck /Users/f.d.developer/personal/skill-dev/hooks/session-start.sh || echo "shellcheck not installed — skipped"`
+Run: `command -v shellcheck >/dev/null && shellcheck <plugin-root>/hooks/session-start.sh || echo "shellcheck not installed — skipped"`
 Expected: no output (success) or "shellcheck not installed — skipped".
 
 - [ ] **Step 4: Smoke test the hook**
@@ -981,7 +981,7 @@ Run:
 ```bash
 mkdir -p /tmp/ios-design-hook-test/.claude/state
 touch /tmp/ios-design-hook-test/.claude/state/ios-design-init-introduced.flag
-CLAUDE_PROJECT_DIR=/tmp/ios-design-hook-test /Users/f.d.developer/personal/skill-dev/hooks/session-start.sh
+CLAUDE_PROJECT_DIR=/tmp/ios-design-hook-test <plugin-root>/hooks/session-start.sh
 ls /tmp/ios-design-hook-test/.claude/state/
 rm -rf /tmp/ios-design-hook-test
 ```
@@ -990,7 +990,7 @@ Expected: `ls` prints empty (flag was deleted).
 - [ ] **Step 5: Commit**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 git add hooks/session-start.sh
 git commit -m "feat(hooks): add SessionStart hook to reset capability-card flags"
 ```
@@ -1000,7 +1000,7 @@ git commit -m "feat(hooks): add SessionStart hook to reset capability-card flags
 ## Task 9: Router Skill (`ios-design`)
 
 **Files:**
-- Create: `/Users/f.d.developer/personal/skill-dev/skills/ios-design/SKILL.md`
+- Create: `<plugin-root>/skills/ios-design/SKILL.md`
 
 - [ ] **Step 1: Write SKILL.md**
 
@@ -1080,7 +1080,7 @@ Run:
 ```bash
 python3 -c "
 import re, sys
-with open('/Users/f.d.developer/personal/skill-dev/skills/ios-design/SKILL.md') as f:
+with open('<plugin-root>/skills/ios-design/SKILL.md') as f:
     content = f.read()
 m = re.match(r'---\n(.*?)\n---\n', content, re.DOTALL)
 assert m, 'Missing frontmatter'
@@ -1095,7 +1095,7 @@ Expected: `OK`
 - [ ] **Step 3: Commit**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 git add skills/ios-design/SKILL.md
 git commit -m "feat(skill): add ios-design router skill"
 ```
@@ -1105,7 +1105,7 @@ git commit -m "feat(skill): add ios-design router skill"
 ## Task 10: Init Skill (`ios-design:init`)
 
 **Files:**
-- Create: `/Users/f.d.developer/personal/skill-dev/skills/ios-design-init/SKILL.md`
+- Create: `<plugin-root>/skills/ios-design-init/SKILL.md`
 
 - [ ] **Step 1: Write SKILL.md**
 
@@ -1260,7 +1260,7 @@ Run the same Python validation as Task 9 Step 2, with path adjusted.
 - [ ] **Step 3: Commit**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 git add skills/ios-design-init/SKILL.md
 git commit -m "feat(skill): add ios-design-init skill (scaffold + DNA selection)"
 ```
@@ -1270,7 +1270,7 @@ git commit -m "feat(skill): add ios-design-init skill (scaffold + DNA selection)
 ## Task 11: Feature Skill (`ios-design:feature`)
 
 **Files:**
-- Create: `/Users/f.d.developer/personal/skill-dev/skills/ios-design-feature/SKILL.md`
+- Create: `<plugin-root>/skills/ios-design-feature/SKILL.md`
 
 - [ ] **Step 1: Write SKILL.md**
 
@@ -1396,7 +1396,7 @@ git commit -m "feat: <feature-name>"
 - [ ] **Step 3: Commit**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 git add skills/ios-design-feature/SKILL.md
 git commit -m "feat(skill): add ios-design-feature skill (prototype + impl)"
 ```
@@ -1406,7 +1406,7 @@ git commit -m "feat(skill): add ios-design-feature skill (prototype + impl)"
 ## Task 12: Tweak Skill (`ios-design:tweak`)
 
 **Files:**
-- Create: `/Users/f.d.developer/personal/skill-dev/skills/ios-design-tweak/SKILL.md`
+- Create: `<plugin-root>/skills/ios-design-tweak/SKILL.md`
 
 - [ ] **Step 1: Write SKILL.md**
 
@@ -1497,7 +1497,7 @@ git commit -m "style: <description of tweak>"
 - [ ] **Step 3: Commit**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 git add skills/ios-design-tweak/SKILL.md
 git commit -m "feat(skill): add ios-design-tweak skill (focused edits + DNA check)"
 ```
@@ -1507,7 +1507,7 @@ git commit -m "feat(skill): add ios-design-tweak skill (focused edits + DNA chec
 ## Task 13: Manual Test Scenarios
 
 **Files:**
-- Create: `/Users/f.d.developer/personal/skill-dev/tests/manual-scenarios.md`
+- Create: `<plugin-root>/tests/manual-scenarios.md`
 
 - [ ] **Step 1: Write manual-scenarios.md**
 
@@ -1657,7 +1657,7 @@ git log --oneline | head -1  # expected: initial commit
 - [ ] **Step 2: Commit**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 git add tests/manual-scenarios.md
 git commit -m "test: add 10 manual scenario tests for v0.1.0 release validation"
 ```
@@ -1667,7 +1667,7 @@ git commit -m "test: add 10 manual scenario tests for v0.1.0 release validation"
 ## Task 14: README Finalize
 
 **Files:**
-- Modify: `/Users/f.d.developer/personal/skill-dev/README.md`
+- Modify: `<plugin-root>/README.md`
 
 - [ ] **Step 1: Replace skeleton with full README**
 
@@ -1756,7 +1756,7 @@ Custom DNAs derived from a base by parameter tweak.
 - [ ] **Step 2: Commit**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 git add README.md
 git commit -m "docs: finalize v0.1.0 README"
 ```
@@ -1772,7 +1772,7 @@ Run end-to-end validation using available tooling.
 If `plugin-dev:plugin-validator` skill available: invoke it on the project root.
 If not: manual validation:
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 python3 -c "
 import json, os, sys
 m = json.load(open('plugin.json'))
@@ -1793,7 +1793,7 @@ Expected: `Manifest OK`
 - [ ] **Step 2: Skill frontmatter validation (all 4)**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 for skill_md in skills/*/SKILL.md; do
   python3 -c "
 import re, sys
@@ -1812,7 +1812,7 @@ Expected: 4 lines of `OK: ...`
 - [ ] **Step 3: All references / templates / prototypes exist**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 test -f references/companion-plugins.md
 test -f references/motion-fidelity-rules.md
 test -f references/dna-prototypes.md
@@ -1847,7 +1847,7 @@ Pick Scenario 1 (Skill discoverability) from `tests/manual-scenarios.md` and exe
 - [ ] **Step 6: Tag the release**
 
 ```bash
-cd /Users/f.d.developer/personal/skill-dev
+cd <plugin-root>
 git tag -a v0.1.0 -m "ios-design plugin v0.1.0 — initial release"
 ```
 

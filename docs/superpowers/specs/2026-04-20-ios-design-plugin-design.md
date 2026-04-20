@@ -2,7 +2,7 @@
 
 **Date:** 2026-04-20
 **Status:** Implemented (v0.1.1 released and validated end-to-end)
-**Owner:** f.d.developer
+**Owner:** <author>
 **Target version:** v0.1.0 (initial), v0.1.1 (real-world fix — see §14)
 
 ---
@@ -352,7 +352,7 @@ Validated during plugin development:
   "name": "ios-design",
   "version": "0.1.0",
   "description": "Design-first iOS app development plugin. Motion-validated HTML prototypes → SwiftUI implementation. Composes with superpowers.",
-  "author": "f.d.developer",
+  "author": "<author>",
   "skills": [
     "skills/ios-design",
     "skills/ios-design-init",

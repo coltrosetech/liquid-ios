@@ -4,3 +4,12 @@
 node_modules/
 .env
 .env.local
+
+# Playwright MCP cache (local browser automation artifacts)
+.playwright-mcp/
+
+# Stray screenshots at repo root (curated set lives in docs/screenshots/)
+/*.png
+
+# Per-project prototype server PID/log
+.design/.prototype-server.*
