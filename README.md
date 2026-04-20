@@ -174,7 +174,8 @@ GIF ile tam etkileşim (tap → celebration → state update):
 
 ```bash
 brew install xcodegen                           # tek seferlik
-cd /path/to/your-generated-sprout-project
+git clone https://github.com/coltrosetech/liquid-ios-examples.git
+cd liquid-ios-examples/sprout
 xcodegen generate                               # project.yml → Sprout.xcodeproj
 xcodebuild -project Sprout.xcodeproj \
   -scheme Sprout \
@@ -194,6 +195,24 @@ xcrun simctl io booted recordVideo out.mov      # motion için
 - **Plugin gerçek bir bug üretti:** ilk denemede `.spring(response:damping:)` çıktı — SwiftUI bu imzayı `dampingFraction` olarak istiyor. Fix: `references/motion-fidelity-rules.md` artık DNA `damping` → SwiftUI `dampingFraction` mapping'ini açıkça belgeliyor ve pre-commit grep check öneriyor. Bulundu, düzeltildi, belgelendi — dürüst v0.1 hikayesi.
 - **iOS 26 bağımlılıkları Xcode 26 gerektirir:** Breathe gibi Liquid Glass `.glassEffect()` kullanan generated code Xcode 16.2 + iOS 18.3 SDK ile derlenmez. Çözüm ya Xcode 26+ kullanmak ya da DNA override ile iOS 17'ye düşürmek. Sprout bu yüzden test için seçildi (sadece iOS 17 primitives).
 - **Emoji picker + Form + sheet presentation** — hiç extra iş yapmadan çalıştı. Generated SwiftUI SwiftUI idiom'larını doğru kullanıyor.
+
+---
+
+## 📦 Örnek projeler — açık kaynak
+
+Yukarıdaki üç senaryonun (Todo, Breathe, Sprout) tam kaynak kodu **ayrı bir repo** olarak yayında:
+
+### **→ [github.com/coltrosetech/liquid-ios-examples](https://github.com/coltrosetech/liquid-ios-examples)**
+
+Her uygulama bağımsız bir XcodeGen projesi. `git clone → xcodegen generate → open Xxx.xcodeproj → ▶ Run`.
+
+| App | DNA | Xcode | Seed data |
+|---|---|---|---|
+| [`todo/`](https://github.com/coltrosetech/liquid-ios-examples/tree/main/todo) | Editorial Crisp | 16+ | ✅ 6 örnek görev |
+| [`breathe/`](https://github.com/coltrosetech/liquid-ios-examples/tree/main/breathe) | Liquid Native | **26+** (iOS 26 `.glassEffect()`) | — |
+| [`sprout/`](https://github.com/coltrosetech/liquid-ios-examples/tree/main/sprout) | Playful Character | 16+ | ✅ 4 bitki |
+
+Her klasörde `.design/` (kilitli DNA + HTML prototipler) commit'li — plugin'in nasıl çalıştığını örnek üzerinden görmek için de iyi bir kaynak.
 
 ---
 
