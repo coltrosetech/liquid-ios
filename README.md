@@ -1,6 +1,6 @@
 # 🌊 liquid-ios
 
-> **Motion-validated SwiftUI for Claude Code.** Three design DNAs, locked-in via interactive HTML prototypes, then materialized as production SwiftUI — without losing the motion you approved.
+> **Claude Code için motion-validated SwiftUI.** Üç tasarım DNA'sı, interaktif HTML prototiplerle önceden onaylanır; sonra onayladığın motion kaybolmadan production SwiftUI olarak materyalize edilir.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Version](https://img.shields.io/badge/version-v0.1.1-green.svg)](CHANGELOG.md) [![Status](https://img.shields.io/badge/status-stable-brightgreen.svg)](#) [![Made for](https://img.shields.io/badge/made%20for-Claude%20Code-orange.svg)](https://claude.com/claude-code)
 
@@ -15,74 +15,74 @@
 </p>
 
 <p align="center">
-  <em>The same plugin. Three different apps. Three different design DNAs — chosen, not guessed.</em>
+  <em>Aynı plugin. Üç farklı app. Üç farklı tasarım DNA'sı — seçilmiş, tahmin edilmemiş.</em>
 </p>
 
 ---
 
-## 🤔 Why this plugin exists
+## 🤔 Bu plugin neden var?
 
-Most "build an iOS app with AI" tools generate **technically-correct, visually-generic SwiftUI**. Buttons exist. Lists scroll. Colors are vaguely on-brand. Motion is... whatever the model felt like.
+Çoğu "AI ile iOS app yap" aracı **teknik olarak doğru, görsel olarak jenerik SwiftUI** üretiyor. Butonlar var. Listeler kayıyor. Renkler muğlak şekilde markaya uygun. Motion ise... modelin içinden ne geçtiyse.
 
-**The hard part isn't the code. It's the design intentionality.** Smooth motion, novel interactions, a coherent visual language — these don't happen accidentally. They require:
+**Zor olan kısım kod değil, tasarım niyeti.** Akıcı motion, özgün etkileşimler, tutarlı bir görsel dil — bunlar kazara olmaz. Üç şey gerektirir:
 
-1. A **chosen design language** (what character does this app have?)
-2. **Validation before commitment** (does the motion feel right, before we lock it in?)
-3. **Disciplined enforcement** (every new screen stays on-DNA — no drift)
+1. **Seçilmiş bir tasarım dili** (bu app'in karakteri ne?)
+2. **Taahhütten önce doğrulama** (motion iyi hissettiriyor mu, kilitlemeden önce?)
+3. **Disiplinli uygulama** (her yeni ekran DNA'ya sadık kalsın — sapma yok)
 
-`liquid-ios` is a Claude Code plugin that enforces all three. You start a project; the plugin researches your category, recommends a stack and a design DNA, generates **three interactive HTML prototypes** for you to feel the motion in a real browser, and then writes SwiftUI conformant to your approved DNA — every animation primitive in the prototype maps 1:1 to a SwiftUI counterpart it knows how to reproduce faithfully.
+`liquid-ios` bu üçünü de zorlayan bir Claude Code plugin'i. Proje başlatırsın; plugin kategorini araştırır, bir stack ve tasarım DNA'sı önerir, **üç interaktif HTML prototipi** üretir (tarayıcıda motion'ı gerçekten hissedersin), sonra onayladığın DNA'ya sadık SwiftUI yazar — prototipteki her animasyon primitifinin SwiftUI'de birebir sadakatle üretilebilen karşılığı vardır.
 
 ---
 
-## ✨ What you get
+## ✨ Ne sunar?
 
-### Four skills, one workflow
+### Dört skill, tek workflow
 
-| Skill | Use when… | Produces |
+| Skill | Ne zaman… | Ne üretir |
 |---|---|---|
-| `ios-design` *(router)* | You're not sure where to start | Inspects state, prints a capability card, dispatches to the right sub-skill |
-| `ios-design:init` | Starting a new iOS app from scratch | 3 interactive HTML prototypes → your DNA → Xcode scaffold + initial commit |
-| `ios-design:feature` | Adding a screen / view / flow | Single prototype in your DNA → SwiftUI implementation |
-| `ios-design:tweak` | Adjusting motion / spacing / a color | Targeted edit + DNA-conformance check |
+| `ios-design` *(router)* | Nereden başlayacağını bilmiyorsan | Durumu inceler, capability card basar, doğru sub-skill'e yönlendirir |
+| `ios-design:init` | Sıfırdan yeni bir iOS app başlatıyorsan | 3 interaktif HTML prototipi → DNA seçimi → Xcode scaffold + ilk commit |
+| `ios-design:feature` | Yeni bir ekran / view / akış ekliyorsan | DNA içinde tek prototip → SwiftUI implementation |
+| `ios-design:tweak` | Motion / spacing / renk gibi küçük bir ayar yapıyorsan | Odaklı düzenleme + DNA uyumluluk kontrolü |
 
-### Three behaviors that set this apart
+### Plugin'i ayıran üç davranış
 
-1. **Self-introducing capability cards** — every skill announces *what it does* and *what supercharges it* on first activation. No more guessing what just got triggered.
-2. **Research-and-recommend over A/B/C config** — the skill researches your app category and recommends decisions (min iOS, persistence, architecture, DNA) with rationale. You accept, override, or ask for alternatives. No bare multiple-choice questions.
-3. **Companion plugin awareness** — detects missing helpful plugins/MCPs (`superpowers`, `context7`, `playwright`, `serena`) and explains the value loss without blocking execution.
+1. **Kendini tanıtan capability card'lar** — her skill ilk aktivasyonda *ne yaptığını* ve *neyle güçlendiğini* açıkça söyler. Ne tetiklendiğini tahmin etmek yok.
+2. **A/B/C config yerine araştır-ve-öner** — skill app kategorini araştırır, kararları (min iOS, persistence, mimari, DNA) gerekçeli olarak önerir. Kabul edersin, override edersin, veya alternatif istersin. Çoktan seçmeli değil.
+3. **Companion plugin farkındalığı** — eksik yardımcı plugin'leri/MCP'leri (`superpowers`, `context7`, `playwright`, `serena`) tespit eder, kayıp değeri açıklar ama çalışmayı engellemez.
 
 ---
 
-## 🎬 See it in action — three apps, one plugin
+## 🎬 İş başında — üç app, tek plugin
 
-### Scenario 1 — Productivity tool → Editorial Crisp
+### Senaryo 1 — Productivity aracı → Editorial Crisp
 
-**The prompt:**
+**Prompt:**
 > "Yeni bir iOS app yapmak istiyorum: basic bir todo app. Hızlı task yönetimi."
 
-**What the plugin did:**
-- Researched the productivity category → recommended **iOS 17** (mass-market) + **Editorial Crisp** DNA (sharp ease, monospace timestamps, minimal ornament — Linear/Notion aesthetic).
-- Generated 3 prototypes; user approved Editorial Crisp.
-- Scaffolded `Sources/` with `TodoTask` model, `TodoListService` (`@Observable @MainActor`), `TodayView` with `List` + checkboxes + 200ms easeInOut toggle.
+**Plugin ne yaptı:**
+- Productivity kategorisini araştırdı → **iOS 17** (mass-market) + **Editorial Crisp** DNA önerdi (sharp ease, monospace timestamps, minimal süs — Linear/Notion estetiği).
+- 3 prototip üretti; kullanıcı Editorial Crisp'i onayladı.
+- `Sources/`'u scaffold etti: `TodoTask` model, `TodoListService` (`@Observable @MainActor`), `TodayView` — `List` + checkbox'lar + 200ms easeInOut toggle.
 
 <p align="center">
-  <img src="docs/screenshots/editorial-crisp-todo.png" width="320" alt="Todo today screen — Editorial Crisp">
-  <img src="docs/screenshots/editorial-crisp-after-toggle.png" width="320" alt="After toggling a task">
+  <img src="docs/screenshots/editorial-crisp-todo.png" width="320" alt="Todo today ekranı — Editorial Crisp">
+  <img src="docs/screenshots/editorial-crisp-after-toggle.png" width="320" alt="Task toggle sonrası">
 </p>
 
-**Key takeaway:** No magic numbers in the SwiftUI. Every color, spacing value, and animation timing references the locked design system.
+**Ana çıkarım:** SwiftUI'de hardcoded magic number yok. Her renk, her spacing, her animasyon süresi kilitli design system'den okunuyor.
 
 ---
 
-### Scenario 2 — Meditation app → Liquid Native
+### Senaryo 2 — Meditation app → Liquid Native
 
-**The prompt:**
+**Prompt:**
 > "Breathe — günde 5 dakikalık nefes egzersizleri rehberi. Premium meditation kategorisi."
 
-**What the plugin did:**
-- Researched meditation/wellness → recommended **iOS 26** (Liquid Glass benefit clear for premium) + **Liquid Native** DNA (depth, glassmorphism, slow spring transitions).
-- Generated 3 prototypes — Liquid Native an obvious fit for the calm/premium feel.
-- Scaffolded `BreathSession` SwiftData model, `SessionLog`, `TodayView` with `phaseAnimator`-driven breathing orb wrapped in `.glassEffect()` (with `.ultraThinMaterial` fallback for iOS<26).
+**Plugin ne yaptı:**
+- Meditation/wellness'ı araştırdı → **iOS 26** (Liquid Glass faydası premium için net) + **Liquid Native** DNA önerdi (derinlik, glassmorphism, yavaş spring transitions).
+- 3 prototip üretti — sakin/premium hisse en uygun olan Liquid Native'di.
+- `BreathSession` SwiftData model, `SessionLog`, `TodayView`'ı scaffold etti: `phaseAnimator` ile sürekli nefes alan breathing orb, `.glassEffect()` ile sarmalanmış (iOS<26 için `.ultraThinMaterial` fallback).
 
 <p align="center">
   <img src="docs/screenshots/breathe-liquid-native.png" width="280" alt="Breathe — Liquid Native">
@@ -90,235 +90,235 @@ Most "build an iOS app with AI" tools generate **technically-correct, visually-g
   <img src="docs/screenshots/breathe-playful-character.png" width="280" alt="Breathe — Playful Character">
 </p>
 
-**Key takeaway:** Same app idea, three DNAs — three completely different feels. Liquid Native won because clinical (Editorial) feels wrong for meditation, and bouncy (Playful) feels wrong for calm. The plugin's recommendation matched the category instinct.
+**Ana çıkarım:** Aynı app fikri, üç DNA — üç tamamen farklı his. Liquid Native seçildi çünkü klinik (Editorial) meditation'a ters, zıplayıcı (Playful) da sakinliğe ters. Plugin'in önerisi kategori sezgisiyle örtüştü.
 
 ---
 
-### Scenario 3 — Lifestyle app with character → Playful Character
+### Senaryo 3 — Karakterli lifestyle app → Playful Character
 
-**The prompt:**
+**Prompt:**
 > "Sprout — ev bitkileri sulama hatırlatıcısı. Plant parents için karakterli bir app."
 
-**What the plugin did:**
-- Researched plant care apps → recommended **iOS 17** (mass-market) + **Playful Character** DNA (overshoot, warm gradients, character emoji wiggle).
-- Scaffolded `Plant` model with thirst calculation, `Garden` observable service, `GardenView` with `THIRSTY/HAPPY` sections + animated thirst bars + bounce on water tap, `AddPlantSheet` with emoji picker grid, `PlantDetailView` with watering history `Charts`.
+**Plugin ne yaptı:**
+- Plant care app'leri araştırdı → **iOS 17** (mass-market) + **Playful Character** DNA önerdi (overshoot, sıcak gradyanlar, karakter emoji wiggle).
+- `Plant` modeli (thirst hesaplama dahil), `Garden` observable service, `GardenView` (`THIRSTY/HAPPY` section'ları + animasyonlu thirst bar'lar + water tap'te bounce), `AddPlantSheet` (emoji picker grid), `PlantDetailView` (watering history `Charts` ile) scaffold etti.
 
 <p align="center">
-  <img src="docs/screenshots/sprout-playful-character.png" width="320" alt="Sprout main screen">
-  <img src="docs/screenshots/sprout-feature-plant-detail.png" width="320" alt="Plant detail screen">
+  <img src="docs/screenshots/sprout-playful-character.png" width="320" alt="Sprout ana ekran">
+  <img src="docs/screenshots/sprout-feature-plant-detail.png" width="320" alt="Plant detail ekranı">
 </p>
 
-**Key takeaway:** A real app surface — multiple screens, navigation, gamification (drop counter), data flow — produced from prototype-first workflow with **zero generic AI feel**.
+**Ana çıkarım:** Gerçek bir app yüzeyi — çoklu ekranlar, navigation, gamification (drop counter), data flow — hepsi prototip-önce workflow'uyla üretildi, **sıfır generic AI hissi**.
 
 ---
 
-## 🚀 Quick start
+## 🚀 Hızlı başlangıç
 
 ```bash
 # Clone
 git clone https://github.com/coltrosetech/liquid-ios.git
 cd liquid-ios
 
-# Install via local symlink (Claude Code discovers plugins in ~/.claude/plugins/)
+# Local symlink ile install (Claude Code ~/.claude/plugins/ içinde keşfeder)
 mkdir -p ~/.claude/plugins/local
 ln -snf "$(pwd)" ~/.claude/plugins/local/liquid-ios
 
-# Restart Claude Code (Cmd+Q, relaunch)
+# Claude Code'u yeniden başlat (Cmd+Q, aç)
 ```
 
-In a fresh Claude Code session in any empty directory:
+Boş bir dizinde yeni bir Claude Code session açıp:
 
 ```
-You: Yeni bir iOS app yapmak istiyorum: <your idea>
+Sen: Yeni bir iOS app yapmak istiyorum: <fikrin>
 ```
 
-The router activates, prints its capability card, recommends a stack and DNA, and walks you through the rest.
+Router aktive olur, capability card basar, bir stack ve DNA önerir, gerisini seninle yürütür.
 
-> Full install paths (marketplace, GitHub, etc.) → see [`INSTALL.md`](INSTALL.md).
-> Detailed prompting guide → see [`USAGE.md`](USAGE.md).
+> Tüm install yolları (marketplace, GitHub, vb.) → [`INSTALL.md`](INSTALL.md).
+> Detaylı prompt rehberi → [`USAGE.md`](USAGE.md).
 
 ---
 
-## 🧭 How it works (workflow snapshot)
+## 🧭 Nasıl çalışır (workshop akışı)
 
 ```
-Day 1
-  You:    "Yeni iOS app: <idea>"
-  Plugin: → ios-design:init activates
-          → Capability card prints
-          → Stack research + recommendation (with rationale)
-          → 3 DNA prototypes opened in browser via local HTTP server
-          → You pick one (or a hybrid)
-          → .design/design-system.json + DESIGN_DNA.md persisted
-          → Xcode scaffold + initial commit
+Gün 1
+  Sen:    "Yeni iOS app: <fikir>"
+  Plugin: → ios-design:init aktive olur
+          → Capability card basılır
+          → Stack araştırması + öneri (gerekçeli)
+          → 3 DNA prototipi yerel HTTP server üzerinden tarayıcıda açılır
+          → Birini seçersin (veya hibrit)
+          → .design/design-system.json + DESIGN_DNA.md kalıcılaşır
+          → Xcode scaffold + ilk commit
 
-Day 1 (later)
-  You:    "Today screen'e <feature> ekle"
-  Plugin: → ios-design:feature activates
-          → DNA context auto-loaded
-          → Single prototype rendered in your DNA
-          → You approve
-          → SwiftUI generated (motion mapped 1:1 from prototype)
+Gün 1 (sonra)
+  Sen:    "Today screen'e <feature> ekle"
+  Plugin: → ios-design:feature aktive olur
+          → DNA context otomatik yüklenir
+          → DNA içinde tek prototip render edilir
+          → Onaylarsın
+          → SwiftUI üretilir (motion prototipten birebir mapping)
           → simplify pass → verification gate → commit
 
-Day 2
-  You:    "<X> animasyonu daha yumuşak"
-  Plugin: → ios-design:tweak activates
-          → Diffs your request against DNA
-          → If DNA-deviating: asks "tek seferlik mi, DNA revize mi?"
-          → Applies + commits
+Gün 2
+  Sen:    "<X> animasyonu daha yumuşak olsun"
+  Plugin: → ios-design:tweak aktive olur
+          → İsteği DNA'ya karşı diff'ler
+          → DNA'dan sapıyorsa: "tek seferlik mi, DNA revize mi?" diye sorar
+          → Uygular + commit
 ```
 
 ---
 
-## 🎨 The DNA catalog (3 opinionated defaults)
+## 🎨 DNA kataloğu (3 opinionated default)
 
-| DNA | Character | Motion signature | Typical fit |
+| DNA | Karakter | Motion imzası | Tipik kullanım |
 |---|---|---|---|
-| **Liquid Native** | Apple HIG + iOS 26 Liquid Glass — depth, gloss, layered transitions | `spring(response: 0.5, damping: 0.8)`, matchedGeometryEffect-heavy | Premium consumer, content-heavy, Apple ecosystem (journal, reader, meditation) |
-| **Editorial Crisp** | Linear/Notion aesthetic — sharp lines, sharp ease, monospace accents | `easeInOut` 200ms, short transitions, no distraction | Productivity, tools, B2B, dev-facing apps |
-| **Playful Character** | Arc/Duolingo energy — overshoot, bounce, color bursts, micro-celebrations | `spring(response: 0.4, damping: 0.6)`, TimelineView, haptic-rich | Consumer entertainment, gamified, social, lifestyle |
+| **Liquid Native** | Apple HIG + iOS 26 Liquid Glass — derinlik, parıltı, katmanlı geçişler | `spring(response: 0.5, damping: 0.8)`, matchedGeometryEffect ağırlıklı | Premium tüketici, içerik ağırlıklı, Apple ekosistemi (journal, reader, meditation) |
+| **Editorial Crisp** | Linear/Notion estetiği — net çizgiler, keskin easing, monospace aksan | `easeInOut` 200ms, kısa transitions, dikkat dağıtmaz | Productivity, dev tools, B2B, editorial app'ler |
+| **Playful Character** | Arc/Duolingo enerjisi — overshoot, bounce, renk patlamaları, mikro-kutlamalar | `spring(response: 0.4, damping: 0.6)`, TimelineView, haptic-zengin | Tüketici eğlence, gamified, social, lifestyle |
 
-Custom DNAs are derived from a base preset by parameter tweak with a new `dna_id` (e.g., "Liquid Native but calmer motion" → `liquid-native-calm`).
+Custom DNA'lar base preset'ten parametre tweak'iyle türetilir (örn. "Liquid Native ama daha sakin motion" → `liquid-native-calm`).
 
 ---
 
-## ⚙️ Default stack (research-and-recommend output)
+## ⚙️ Default stack (araştır-ve-öner çıktısı)
 
-The init flow recommends these as defaults; you accept all, accept some, or override:
+Init akışı bunları default olarak önerir; hepsini kabul edersin, bir kısmını kabul edersin veya override edersin:
 
-| Decision | Default | When it changes |
+| Karar | Default | Ne zaman değişir |
 |---|---|---|
-| Min iOS | 26 | Lowered to 17 if your app needs broad device reach (mass-market) |
-| Bootstrap | Vanilla Xcode (solo) / Tuist (team) | Module count + team size driven |
-| Test framework | Swift Testing (iOS 18+) | Falls back to XCTest if min iOS < 18 |
-| Concurrency | Swift 6 strict | Locked |
-| State | `@Observable` + `@MainActor` | Locked (iOS 17+ standard) |
-| Persistence | SwiftData | Falls back to Core Data only if min iOS < 17 |
-| Architecture | MVVM + Observable services | TCA recommended for multi-team |
-| DI | Manual constructor injection | YAGNI — framework only if proven needed |
-| Navigation | NavigationStack + path binding | iOS 16+ standard |
+| Min iOS | 26 | Geniş cihaz erişimi gerekiyorsa (mass-market) 17'ye düşürülür |
+| Bootstrap | Vanilla Xcode (solo) / Tuist (takım) | Modül sayısı + takım büyüklüğü |
+| Test framework | Swift Testing (iOS 18+) | Min iOS < 18 ise XCTest'e düşer |
+| Concurrency | Swift 6 strict | Kilitli |
+| State | `@Observable` + `@MainActor` | Kilitli (iOS 17+ standart) |
+| Persistence | SwiftData | Min iOS < 17 ise Core Data'ya düşer |
+| Architecture | MVVM + Observable services | Çok takımlı proje için TCA önerilir |
+| DI | Manual constructor injection | YAGNI — framework sadece gerçekten gerekirse |
+| Navigation | NavigationStack + path binding | iOS 16+ standart |
 
-All chosen values are persisted to `.design/DESIGN_DNA.md#Stack Decisions` with rationale per item.
+Seçilen tüm değerler `.design/DESIGN_DNA.md#Stack Decisions` içine gerekçeleriyle birlikte yazılır.
 
 ---
 
-## 🔗 Composition with `superpowers`
+## 🔗 `superpowers` ile kompozisyon
 
-`liquid-ios` doesn't reimplement planning, simplification, or verification — it **delegates** to [`superpowers`](https://github.com/anthropic-experimental/superpowers) at well-defined gateway points:
+`liquid-ios` planning, simplification, verification mantığını yeniden yazmıyor — [`superpowers`](https://github.com/anthropic-experimental/superpowers)'a net tanımlı gateway noktalarında **delegate** ediyor:
 
-| ios-design skill | Gateway | Invoked superpowers skill |
+| ios-design skill | Gateway | Çağrılan superpowers skill |
 |---|---|---|
-| `init` | After capability card | `brainstorming` (skipped if a recent spec exists) |
-| `init` | After DNA selection | `writing-plans` |
-| `init` | Before initial commit | `verification-before-completion` |
-| `feature` | Before prototype design | `brainstorming` (only if scope unclear) |
-| `feature` | After prototype approval | `writing-plans` (when > 3 implementation steps) |
-| `feature` | During implementation (logic only) | `test-driven-development` |
-| `feature` | After implementation | `simplify` |
-| `feature` | Before commit | `verification-before-completion` |
-| `tweak` | Before applying change | `systematic-debugging` (if change is bug-driven) |
-| `tweak` | After applying change | `simplify` |
+| `init` | Capability card sonrası | `brainstorming` (yakın zamanlı spec varsa atlanır) |
+| `init` | DNA seçimi sonrası | `writing-plans` |
+| `init` | İlk commit öncesi | `verification-before-completion` |
+| `feature` | Prototip tasarımı öncesi | `brainstorming` (sadece scope belirsizse) |
+| `feature` | Prototip onayı sonrası | `writing-plans` (> 3 adım gerekiyorsa) |
+| `feature` | Implementation sırasında (sadece logic) | `test-driven-development` |
+| `feature` | Implementation sonrası | `simplify` |
+| `feature` | Commit öncesi | `verification-before-completion` |
+| `tweak` | Değişiklik öncesi | `systematic-debugging` (bug kaynaklıysa) |
+| `tweak` | Değişiklik sonrası | `simplify` |
 
-If `superpowers` is not installed, gateways are skipped silently with a warning. **Quality drops noticeably** — install superpowers.
+`superpowers` kurulu değilse gateway'ler sessizce atlanır ve bir uyarı basılır. **Kalite belirgin şekilde düşer** — superpowers'ı kur.
 
 ---
 
-## 🧰 Companion plugins / MCPs
+## 🧰 Companion plugin'ler / MCP'ler
 
-Recommended for full power. The plugin gracefully degrades when any are missing:
+Tam güç için önerilir. Herhangi biri eksikse plugin düzgün şekilde degrade olur:
 
-| Plugin / MCP | Criticality | Loss if missing |
+| Plugin / MCP | Kritiklik | Eksikse kaybolan |
 |---|---|---|
-| [`superpowers`](https://github.com/anthropic-experimental/superpowers) | **Essential** | Composition gateways skipped → lower-quality plans, no KISS pass, no verification |
-| `context7` (MCP) | **Essential** | Apple docs frozen at training cutoff |
-| `playwright` (MCP) | Recommended | Prototypes open via `file://` paths you click manually |
-| `serena` (MCP) | Recommended | Tweak skill falls back to full file reads instead of semantic navigation |
-| `claude-md-management` | Optional | CLAUDE.md upkeep is manual |
-| `frontend-design` | Optional | Prototypes may look slightly more "AI-generic" |
+| [`superpowers`](https://github.com/anthropic-experimental/superpowers) | **Essential** | Composition gateway'leri atlanır → düşük kaliteli planlar, KISS pass yok, verification yok |
+| `context7` (MCP) | **Essential** | Apple docs training cutoff'a takılı kalır |
+| `playwright` (MCP) | Recommended | Prototipler manuel tıklanan `file://` yolları olarak açılır |
+| `serena` (MCP) | Recommended | Tweak skill semantic navigation yerine tüm dosyaları okur |
+| `claude-md-management` | Optional | CLAUDE.md bakımı manuel |
+| `frontend-design` | Optional | Prototipler biraz daha "AI-generic" görünebilir |
 
 ---
 
-## 🛣️ Roadmap
+## 🛣️ Yol haritası
 
-- [x] **v0.1.0** — Initial release: 4 skills, 3 DNAs, design system persistence, motion fidelity rules
-- [x] **v0.1.1** — Local HTTP server scripts (unblocks playwright `file://` limitation)
-- [ ] **v0.2** — `ios-design:audit` — DNA drift detection on existing code
-- [ ] **v0.3** — `ios-design:storekit` — IAP / subscription flows with DNA-conformant paywall design
-- [ ] **v0.4** — `ios-design:push` — push notification UI patterns + permission flows
-- [ ] **v0.5** — `ios-design:appstore` — App Store Connect integration, screenshot generation per DNA, submission checklist
-- [ ] **v1.0** — `ios-design:backend-integration` — networking patterns, auth, error/loading state DNA enforcement
+- [x] **v0.1.0** — İlk sürüm: 4 skill, 3 DNA, design system persistence, motion fidelity kuralları
+- [x] **v0.1.1** — Local HTTP server script'leri (playwright `file://` limitasyonunu çözer)
+- [ ] **v0.2** — `ios-design:audit` — Mevcut kodda DNA sapması tespiti
+- [ ] **v0.3** — `ios-design:storekit` — IAP / abonelik akışları, DNA uyumlu paywall tasarımı
+- [ ] **v0.4** — `ios-design:push` — Push notification UI pattern'leri + permission flow'ları
+- [ ] **v0.5** — `ios-design:appstore` — App Store Connect entegrasyonu, DNA'ya göre screenshot üretimi, submission checklist
+- [ ] **v1.0** — `ios-design:backend-integration` — Networking pattern'leri, auth, error/loading state DNA uygulaması
 
-See [`CHANGELOG.md`](CHANGELOG.md) for detailed version history.
+Detaylı sürüm geçmişi için → [`CHANGELOG.md`](CHANGELOG.md).
 
 ---
 
-## 📚 Documentation
+## 📚 Dokümantasyon
 
-| Document | What it covers |
+| Dosya | İçerik |
 |---|---|
-| [`USAGE.md`](USAGE.md) | Prompting guide — which words trigger which skill, good/bad prompt examples, common pitfalls |
-| [`INSTALL.md`](INSTALL.md) | Install paths (local symlink, marketplace, GitHub) + smoke test |
-| [`CHANGELOG.md`](CHANGELOG.md) | Version history with rationale per release |
-| [`docs/superpowers/specs/`](docs/superpowers/specs/) | Original design specification (deep dive on every architectural decision) |
-| [`docs/superpowers/plans/`](docs/superpowers/plans/) | Implementation plan (15 tasks, executed via subagent-driven development) |
-| [`tests/manual-scenarios.md`](tests/manual-scenarios.md) | 10 manual release-validation scenarios |
+| [`USAGE.md`](USAGE.md) | Prompt rehberi — hangi kelimeler hangi skill'i tetikler, iyi/kötü prompt örnekleri, yaygın hatalar |
+| [`INSTALL.md`](INSTALL.md) | Install yolları (local symlink, marketplace, GitHub) + smoke test |
+| [`CHANGELOG.md`](CHANGELOG.md) | Her sürümün gerekçesiyle birlikte geçmişi |
+| [`docs/superpowers/specs/`](docs/superpowers/specs/) | Orijinal tasarım spesifikasyonu (her mimari karar için derinlemesine gerekçe) |
+| [`docs/superpowers/plans/`](docs/superpowers/plans/) | Implementation plan (15 task, subagent-driven development ile yürütüldü) |
+| [`tests/manual-scenarios.md`](tests/manual-scenarios.md) | 10 manuel sürüm-doğrulama senaryosu |
 
 ---
 
-## 🛠️ Repo structure
+## 🛠️ Repo yapısı
 
 ```
 liquid-ios/
 ├── plugin.json              # Manifest
 ├── README.md / USAGE.md / INSTALL.md / CHANGELOG.md / LICENSE
-├── skills/                  # The 4 skills (router, init, feature, tweak)
+├── skills/                  # 4 skill (router, init, feature, tweak)
 │   ├── ios-design/SKILL.md
 │   ├── ios-design-init/SKILL.md
 │   ├── ios-design-feature/SKILL.md
 │   └── ios-design-tweak/SKILL.md
-├── references/              # Progressive-disclosure knowledge base
-│   ├── motion-fidelity-rules.md   # CSS↔SwiftUI whitelist (the bedrock)
-│   ├── dna-prototypes.md           # 3 default DNAs + token defaults
-│   ├── superpowers-composition.md  # Per-skill gateway map
-│   └── companion-plugins.md        # Detection rules + criticality
-├── templates/               # Skeletons substituted at runtime
+├── references/              # Progressive-disclosure bilgi tabanı
+│   ├── motion-fidelity-rules.md   # CSS↔SwiftUI whitelist (bedrock)
+│   ├── dna-prototypes.md           # 3 default DNA + token default'ları
+│   ├── superpowers-composition.md  # Skill başına gateway haritası
+│   └── companion-plugins.md        # Detection kuralları + kritiklik
+├── templates/               # Runtime'da substitute edilen iskeletler
 │   ├── design-system.template.json
 │   ├── DESIGN_DNA.template.md
 │   └── prototype-shell.html
-├── prototypes/              # Default DNA prototype HTML (motion-fidelity-validated)
+├── prototypes/              # Default DNA prototip HTML'leri (motion-fidelity-validated)
 │   ├── liquid-native.html
 │   ├── editorial-crisp.html
 │   └── playful-character.html
-├── scripts/                 # Local HTTP server for playwright
+├── scripts/                 # Playwright için local HTTP server
 │   ├── serve-prototypes.sh
 │   └── stop-prototype-server.sh
-├── hooks/                   # Lifecycle hooks
-│   └── session-start.sh     # Resets capability-card flags per session
-├── tests/                   # Manual release-validation scenarios
+├── hooks/                   # Yaşam döngüsü hook'ları
+│   └── session-start.sh     # Capability-card flag'lerini session başına sıfırlar
+├── tests/                   # Manuel sürüm-doğrulama senaryoları
 │   └── manual-scenarios.md
 └── docs/
-    ├── screenshots/         # Visual proof (3 apps × 3 DNAs)
+    ├── screenshots/         # Görsel kanıt (3 app × 3 DNA)
     └── superpowers/         # Spec + implementation plan
 ```
 
-> **Naming note:** the GitHub repo is named `liquid-ios` for branding. The plugin's manifest name (`ios-design`) and skill IDs (`ios-design:init`, `ios-design:feature`, etc.) reflect the technical purpose. They're intentionally distinct.
+> **İsimlendirme notu:** GitHub repo adı branding için `liquid-ios`. Plugin'in manifest adı (`ios-design`) ve skill ID'leri (`ios-design:init`, `ios-design:feature`, vb.) teknik amacı yansıtır. Bu ayrım bilinçlidir.
 
 ---
 
-## 🙏 Acknowledgments
+## 🙏 Teşekkürler
 
-- Built end-to-end via Claude Code with the `superpowers` plugin (brainstorming → writing-plans → subagent-driven-development → verification → finishing-a-development-branch).
-- Inspired by the existing iOS skill ecosystem ([`avdlee/swiftui-agent-skill`](https://github.com/AvdLee/SwiftUI-Agent-Skill), [`twostraws/swift-agent-skills`](https://github.com/twostraws/swift-agent-skills), [`dpearson2699/swift-ios-skills`](https://github.com/dpearson2699/swift-ios-skills)) — `liquid-ios` complements these knowledge skills with a workflow-first, design-DNA-locked approach.
+- Claude Code'da `superpowers` plugin'i ile baştan sona yazıldı (brainstorming → writing-plans → subagent-driven-development → verification → finishing-a-development-branch).
+- Mevcut iOS skill ekosisteminden ilham alındı ([`avdlee/swiftui-agent-skill`](https://github.com/AvdLee/SwiftUI-Agent-Skill), [`twostraws/swift-agent-skills`](https://github.com/twostraws/swift-agent-skills), [`dpearson2699/swift-ios-skills`](https://github.com/dpearson2699/swift-ios-skills)) — `liquid-ios` bu bilgi skill'lerini workflow-önce, design-DNA-kilitli bir yaklaşımla tamamlıyor.
 
 ---
 
-## 📜 License
+## 📜 Lisans
 
-MIT — see [`LICENSE`](LICENSE).
+MIT — [`LICENSE`](LICENSE).
 
 ---
 
 <p align="center">
-  <em>Built with intention. Generated with discipline. Shipped with motion that survives the trip from prototype to production.</em>
+  <em>Niyetle inşa edildi. Disiplinle üretildi. Prototipten production'a yolculukta hayatta kalan motion ile teslim edildi.</em>
 </p>
