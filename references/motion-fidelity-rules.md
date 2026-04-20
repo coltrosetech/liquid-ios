@@ -54,6 +54,37 @@ After generating a prototype, the skill MUST scan its own output for:
 
 If any check fails: revise the prototype before showing it to the user. Do not surface a non-conforming prototype.
 
+## SwiftUI API naming — critical gotcha
+
+**DNA tokens use readable names; SwiftUI API uses its own. Map correctly when emitting Swift code.**
+
+| DNA token (conceptual) | SwiftUI `.spring(...)` parameter | Notes |
+|---|---|---|
+| `response` | `response:` | Direct — same name |
+| `damping` | `dampingFraction:` | **NOT `damping:`** — common compile error |
+| blendDuration (optional) | `blendDuration:` | Direct |
+
+Correct SwiftUI output:
+```swift
+.animation(.spring(response: 0.4, dampingFraction: 0.6), value: trigger)
+```
+
+Incorrect (will not compile — `error: extra argument 'damping' in call`):
+```swift
+.animation(.spring(response: 0.4, damping: 0.6), value: trigger)
+```
+
+**Alternative (iOS 17+):** `.spring(duration:bounce:)` is the newer semantic form. Use when the DNA expresses motion as total duration + bounciness rather than response + damping.
+
+Feature/init skills emitting SwiftUI MUST apply this mapping. Pre-commit self-check:
+
+```bash
+! grep -rE 'spring\(response:\s*[0-9.]+,\s*damping:' Sources/
+# Expected: no matches
+```
+
+Discovered during v0.1.1 end-to-end validation (Xcode 16.2 build failed with this exact error on first compile of generated Sprout app).
+
 ## Spring parameter conversion (reference)
 
 A SwiftUI `.spring(response: r, damping: d)` approximates to a cubic-bezier. Heuristic (good enough for prototype validation):

@@ -112,6 +112,53 @@
 
 ---
 
+## 🔬 Gerçek kanıt — prototip vs. iOS Simulator
+
+Plugin'in asıl iddiası: *"prototipte gördüğün tam olarak iOS'ta aldığın olur."* Bu bölüm o iddiayı kanıtlıyor.
+
+Sprout uygulamasının `Sources/` klasörü [XcodeGen](https://github.com/yonaskolb/XcodeGen) ile `.xcodeproj`'e dönüştürüldü, `xcodebuild` ile iOS 17+ hedefi için derlendi, iPhone 16 (iOS 18.3) simulatoründe çalıştırıldı — hepsi komut satırından, tek bir oturumda.
+
+<p align="center">
+  <img src="docs/screenshots/sprout-playful-character.png" width="320" alt="Prototype (HTML, Playful Character DNA)">
+  &nbsp;&nbsp;&nbsp;
+  <img src="docs/screenshots/sprout-simulator-populated.png" width="320" alt="Gerçek iOS 18.3 Simulator'de çalışan Sprout">
+</p>
+
+<p align="center">
+  <em>Sol: <code>prototypes/playful-character.html</code> (tarayıcıda).<br>
+  Sağ: aynı tasarım, gerçek SwiftUI olarak <code>iPhone 16 / iOS 18.3</code> simulatoründe çalışıyor.</em>
+</p>
+
+**Ne birebir korundu:**
+- Cream-to-mint gradient arka plan
+- "My garden 🌿" başlık + "N thirsty · M happy" subtitle
+- THIRSTY / HAPPY section organizasyonu
+- Plant card layout — emoji + name + species + thirst bar + water button (thirsty ise)
+- Thirst bar rengi: kırmızı (thirsty) / turuncu (uyarı) / yeşil (healthy) — DNA kuralına uyarak
+- Yeşil dairesel water button + FAB
+- Drop counter pill
+- `phaseAnimator` ile sürekli plant emoji wiggle (screenshot'ta yakalanamıyor, runtime'da görünür)
+
+**Üretim akışı — komut başına:**
+```bash
+cd /tmp/sprout-app-test
+xcodegen generate                               # project.yml → Sprout.xcodeproj
+xcodebuild -project Sprout.xcodeproj \
+  -scheme Sprout \
+  -destination "platform=iOS Simulator,name=iPhone 16" \
+  CODE_SIGNING_ALLOWED=NO build                 # BUILD SUCCEEDED
+xcrun simctl install booted /path/to/Sprout.app
+xcrun simctl launch booted com.liquidios.sample.sprout
+xcrun simctl io booted screenshot out.png       # yukarıdaki simulator screenshot
+```
+
+**Gerçek test'ten çıkan bulgu (v0.1.1'de düzeltilecek):**
+Plugin ilk denemede üretilen SwiftUI'da `.spring(response: 0.4, damping: 0.6)` kullanmıştı — SwiftUI bu imzayı `dampingFraction` olarak bekliyor. DNA konseptinde "damping" kullanmamız okunabilirliği artırıyor ama kod üretirken `dampingFraction`'a çevrilmesi gerekiyor. `references/motion-fidelity-rules.md` bu mapping'i açıkça belgeliyor (v0.1.1+).
+
+> Bu akışı kendin de tekrarlayabilirsin: XcodeGen + Xcode 16.2+ yeterli. Sprout test projesi bu repo'da yok — plugin **senin** projen için aynı şeyi üretir.
+
+---
+
 ## 🚀 Hızlı başlangıç
 
 ```bash

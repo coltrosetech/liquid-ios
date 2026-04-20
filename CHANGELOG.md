@@ -4,6 +4,18 @@ All notable changes to the `ios-design` plugin.
 
 Format: [Keep a Changelog](https://keepachangelog.com/), [Semantic Versioning](https://semver.org/).
 
+## [Unreleased] — v0.1.2 (in preparation)
+
+### Added
+- **Real-device validation in README** — Sprout app built via XcodeGen + xcodebuild, ran on iPhone 16 / iOS 18.3 Simulator. Side-by-side prototype vs. Simulator screenshot in README §"Gerçek kanıt" demonstrates the motion-fidelity claim is not just specified but actually delivered.
+- `docs/screenshots/sprout-simulator-populated.png` — real iOS Simulator output showing prototype design living as production SwiftUI.
+
+### Fixed
+- **`references/motion-fidelity-rules.md`** — documents the critical DNA `damping` → SwiftUI `dampingFraction` API mapping. Generated code was emitting `.spring(response:damping:)` which does not compile (SwiftUI expects `dampingFraction:`). Future `feature`/`init` runs must apply this mapping. Pre-commit grep check suggested.
+
+### Context
+First real end-to-end validation (Xcode compile → Simulator install → launch → screenshot) surfaced the spring API naming gap. Fixed locally in Sprout Sources; feature/init skills will emit correct SwiftUI going forward once v0.1.2 lands.
+
 ## [v0.1.1] — 2026-04-20
 
 ### Added
