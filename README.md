@@ -4,6 +4,17 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Version](https://img.shields.io/badge/version-v0.1.1-green.svg)](CHANGELOG.md) [![Status](https://img.shields.io/badge/status-stable-brightgreen.svg)](#) [![Made for](https://img.shields.io/badge/made%20for-Claude%20Code-orange.svg)](https://claude.com/claude-code)
 
+### 📥 İki komutta kur
+
+Claude Code içinde:
+
+```
+/plugin marketplace add coltrosetech/claude-plugins
+/plugin install liquid-ios@coltrosetech
+```
+
+Marketplace kaynağı: **[coltrosetech/claude-plugins](https://github.com/coltrosetech/claude-plugins)** · Örnek projeler: **[coltrosetech/liquid-ios-examples](https://github.com/coltrosetech/liquid-ios-examples)** · Alternatif kurulum yolları: [aşağıda](#-hızlı-başlangıç) veya [INSTALL.md](INSTALL.md).
+
 ---
 
 <p align="center">
