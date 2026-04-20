@@ -112,11 +112,13 @@
 
 ---
 
-## 🔬 Gerçek kanıt — prototip vs. iOS Simulator
+## 🔬 Gerçek kanıt — prototipten iOS Simulator'e
 
-Plugin'in asıl iddiası: *"prototipte gördüğün tam olarak iOS'ta aldığın olur."* Bu bölüm o iddiayı kanıtlıyor.
+Plugin'in asıl iddiası: *"prototipte gördüğün tam olarak iOS'ta aldığın olur."* Bu bölüm o iddiayı **HTML mockup değil, gerçek çalışan iOS uygulaması** ile kanıtlıyor.
 
-Sprout uygulamasının `Sources/` klasörü [XcodeGen](https://github.com/yonaskolb/XcodeGen) ile `.xcodeproj`'e dönüştürüldü, `xcodebuild` ile iOS 17+ hedefi için derlendi, iPhone 16 (iOS 18.3) simulatoründe çalıştırıldı — hepsi komut satırından, tek bir oturumda.
+Sprout uygulamasının `Sources/` klasörü [XcodeGen](https://github.com/yonaskolb/XcodeGen) ile `.xcodeproj`'e dönüştürüldü, `xcodebuild` ile iOS 17+ hedefi için derlendi, iPhone 16 (iOS 18.3) simulatoründe çalıştırıldı — hepsi komut satırından.
+
+### 1. Statik karşılaştırma — prototip vs. çalışan app
 
 <p align="center">
   <img src="docs/screenshots/sprout-playful-character.png" width="320" alt="Prototype (HTML, Playful Character DNA)">
@@ -126,36 +128,72 @@ Sprout uygulamasının `Sources/` klasörü [XcodeGen](https://github.com/yonask
 
 <p align="center">
   <em>Sol: <code>prototypes/playful-character.html</code> (tarayıcıda).<br>
-  Sağ: aynı tasarım, gerçek SwiftUI olarak <code>iPhone 16 / iOS 18.3</code> simulatoründe çalışıyor.</em>
+  Sağ: aynı tasarım, gerçek SwiftUI olarak <code>iPhone 16 / iOS 18.3</code> simulatoründe.</em>
 </p>
 
-**Ne birebir korundu:**
-- Cream-to-mint gradient arka plan
-- "My garden 🌿" başlık + "N thirsty · M happy" subtitle
-- THIRSTY / HAPPY section organizasyonu
-- Plant card layout — emoji + name + species + thirst bar + water button (thirsty ise)
-- Thirst bar rengi: kırmızı (thirsty) / turuncu (uyarı) / yeşil (healthy) — DNA kuralına uyarak
-- Yeşil dairesel water button + FAB
-- Drop counter pill
-- `phaseAnimator` ile sürekli plant emoji wiggle (screenshot'ta yakalanamıyor, runtime'da görünür)
+**Birebir korunanlar:** cream-to-mint gradient · "My garden 🌿" başlık + thirsty/happy sayaçları · THIRSTY/HAPPY section organizasyonu · plant card layout (emoji + name + species + thirst bar) · thirst bar renk mantığı (kırmızı/turuncu/yeşil) · yeşil dairesel water button · FAB · drop counter pill.
 
-**Üretim akışı — komut başına:**
+### 2. Runtime motion — GIF kanıtı
+
+Statik screenshot `phaseAnimator` ile sürekli yapılan plant emoji wiggle'ını yakalayamıyor. Bu yüzden gerçek Simulator'de `recordVideo` ile çekilen GIF:
+
+<p align="center">
+  <img src="docs/screenshots/sprout-motion-idle.gif" width="320" alt="Plant emojilerinin canlı phaseAnimator wiggle'ı">
+</p>
+
+<p align="center">
+  <em>Her plant emoji'si bağımsız wiggle yapıyor — DNA'nın "plant karakter bağı" felsefesi gerçek SwiftUI <code>.phaseAnimator([0, 1, 2])</code> ile canlı.</em>
+</p>
+
+### 3. Interaction + data flow — "Water Mona" deneyi
+
+Tek bir water button tap'i gerçek state zincirini tetikliyor: `Garden.water()` → `Plant.lastWateredAt = Date()` → SwiftData persist → Garden.reload() → section re-sort → UI rebuild + drop counter spring animation.
+
+<p align="center">
+  <img src="docs/screenshots/sprout-simulator-before-water.png" width="280" alt="Water tap öncesi">
+  &nbsp;&nbsp;
+  <img src="docs/screenshots/sprout-simulator-after-water.png" width="280" alt="Water tap sonrası">
+</p>
+
+| Metrik | Öncesi | Sonrası |
+|---|---|---|
+| Başlık sayacı | `1 thirsty · 3 happy` | `0 thirsty · 4 happy` |
+| Drop counter | `💧 0` | `💧 1` |
+| Mona'nın konumu | THIRSTY section'da, kırmızı bar | HAPPY section'ın tepesinde, "last watered today" |
+| Next reminder | — | `in 7d` (SwiftData ile hesaplandı) |
+
+Tüm bu zincir **senin yazdığın bir satır kod olmadan** çalışıyor — plugin'in ürettiği `Garden` observable service + `Plant` SwiftData modeli + `GardenView`'ın reactive binding'leri, hepsi birlikte çalışıyor.
+
+GIF ile tam etkileşim (tap → celebration → state update):
+
+<p align="center">
+  <img src="docs/screenshots/sprout-motion-water-tap.gif" width="320" alt="Water button tap → celebration → Mona HAPPY'ye taşındı">
+</p>
+
+### 4. Kendi bilgisayarında tekrarla
+
 ```bash
-cd /tmp/sprout-app-test
+brew install xcodegen                           # tek seferlik
+cd /path/to/your-generated-sprout-project
 xcodegen generate                               # project.yml → Sprout.xcodeproj
 xcodebuild -project Sprout.xcodeproj \
   -scheme Sprout \
   -destination "platform=iOS Simulator,name=iPhone 16" \
   CODE_SIGNING_ALLOWED=NO build                 # BUILD SUCCEEDED
-xcrun simctl install booted /path/to/Sprout.app
+
+APP=$(find ~/Library/Developer/Xcode/DerivedData/Sprout-*/Build/Products/Debug-iphonesimulator -name "Sprout.app" | head -1)
+xcrun simctl boot "iPhone 16" 2>/dev/null || true
+xcrun simctl install booted "$APP"
 xcrun simctl launch booted com.liquidios.sample.sprout
-xcrun simctl io booted screenshot out.png       # yukarıdaki simulator screenshot
+xcrun simctl io booted screenshot out.png       # yukarıdaki gibi
+xcrun simctl io booted recordVideo out.mov      # motion için
 ```
 
-**Gerçek test'ten çıkan bulgu (v0.1.1'de düzeltilecek):**
-Plugin ilk denemede üretilen SwiftUI'da `.spring(response: 0.4, damping: 0.6)` kullanmıştı — SwiftUI bu imzayı `dampingFraction` olarak bekliyor. DNA konseptinde "damping" kullanmamız okunabilirliği artırıyor ama kod üretirken `dampingFraction`'a çevrilmesi gerekiyor. `references/motion-fidelity-rules.md` bu mapping'i açıkça belgeliyor (v0.1.1+).
+### 5. Gerçek test bulguları — dürüstlük
 
-> Bu akışı kendin de tekrarlayabilirsin: XcodeGen + Xcode 16.2+ yeterli. Sprout test projesi bu repo'da yok — plugin **senin** projen için aynı şeyi üretir.
+- **Plugin gerçek bir bug üretti:** ilk denemede `.spring(response:damping:)` çıktı — SwiftUI bu imzayı `dampingFraction` olarak istiyor. Fix: `references/motion-fidelity-rules.md` artık DNA `damping` → SwiftUI `dampingFraction` mapping'ini açıkça belgeliyor ve pre-commit grep check öneriyor. Bulundu, düzeltildi, belgelendi — dürüst v0.1 hikayesi.
+- **iOS 26 bağımlılıkları Xcode 26 gerektirir:** Breathe gibi Liquid Glass `.glassEffect()` kullanan generated code Xcode 16.2 + iOS 18.3 SDK ile derlenmez. Çözüm ya Xcode 26+ kullanmak ya da DNA override ile iOS 17'ye düşürmek. Sprout bu yüzden test için seçildi (sadece iOS 17 primitives).
+- **Emoji picker + Form + sheet presentation** — hiç extra iş yapmadan çalıştı. Generated SwiftUI SwiftUI idiom'larını doğru kullanıyor.
 
 ---
 
