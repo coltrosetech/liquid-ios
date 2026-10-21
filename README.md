@@ -1,10 +1,14 @@
 # 🌊 liquid-ios
 
+> **Deprecated — 2026-10-21.** This project is no longer maintained or supported. Do not install or use it for new work. Source and history are retained for reference.
+
 > **Claude Code için motion-validated SwiftUI.** Üç tasarım DNA'sı, interaktif HTML prototiplerle önceden onaylanır; sonra onayladığın motion kaybolmadan production SwiftUI olarak materyalize edilir.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Version](https://img.shields.io/badge/version-v0.1.1-green.svg)](CHANGELOG.md) [![Status](https://img.shields.io/badge/status-stable-brightgreen.svg)](#) [![Made for](https://img.shields.io/badge/made%20for-Claude%20Code-orange.svg)](https://claude.com/claude-code)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Version](https://img.shields.io/badge/version-v0.1.1-green.svg)](CHANGELOG.md) [![Status](https://img.shields.io/badge/status-deprecated-inactive.svg)](#) [![Made for](https://img.shields.io/badge/made%20for-Claude%20Code-orange.svg)](https://claude.com/claude-code)
 
-### 📥 İki komutta kur
+### 📥 Tarihsel kurulum bilgisi — kullanımdan kaldırıldı
+
+Aşağıdaki komutlar arşiv kaydıdır; marketplace dağıtımı sonlandırılmıştır.
 
 Claude Code içinde:
 
